@@ -3,31 +3,27 @@ import * as types from '../mutation-types'
 
 // initial state
 const state = {
-  all: []
+  categories: []
 }
 
 // getters
 const getters = {
-  allProducts: state => state.all
+  allCategories: state => state.categories
 }
 
 // actions
 const actions = {
-  getAllProducts ({ commit }) {
-    shop.getProducts(products => {
-      commit(types.RECEIVE_PRODUCTS, { products })
+  getAllCategories ({ commit }) {
+    shop.getCategory(categories => {
+      commit(types.RECEIVE_CATEGORIES, { categories })
     })
   }
 }
 
 // mutations
 const mutations = {
-  [types.RECEIVE_PRODUCTS] (state, { products }) {
-    state.all = products
-  },
-
-  [types.ADD_TO_CART] (state, { id }) {
-    state.all.find(p => p.id === id).inventory--
+  [types.RECEIVE_CATEGORIES] (state, { categories }) {
+    state.categories = categories
   }
 }
 

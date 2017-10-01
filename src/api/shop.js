@@ -22,7 +22,7 @@ const _products = [
     'title': 'iPad 4 Mini',
     'price': 500.01,
     'inventory': 3,
-    'categoryId': 1,
+    'category': 1,
     'size': 10,
     'color': 'red',
     'image': 'https://s-media-cache-ak0.pinimg.com/originals/41/86/33/4186337b4004ea96018a30b4749f8370.jpg',
@@ -36,7 +36,7 @@ const _products = [
     'title': 'iPad 4 Mini',
     'price': 500.01,
     'inventory': 2,
-    'categoryId': 2,
+    'category': 2,
     'size': 10,
     'color': 'red',
     'image': 'https://s-media-cache-ak0.pinimg.com/originals/41/86/33/4186337b4004ea96018a30b4749f8370.jpg',
@@ -50,7 +50,7 @@ const _products = [
     'title': 'iPad 4 Mini',
     'price': 500.01,
     'inventory': 2,
-    'categoryId': 3,
+    'category': 3,
     'size': 10,
     'color': 'red',
     'image': 'https://s-media-cache-ak0.pinimg.com/originals/41/86/33/4186337b4004ea96018a30b4749f8370.jpg',
@@ -64,7 +64,7 @@ const _products = [
     'title': 'iPad 4 Mini',
     'price': 500.01,
     'inventory': 2,
-    'categoryId': 2,
+    'category': 2,
     'size': 10,
     'color': 'red',
     'image': 'https://s-media-cache-ak0.pinimg.com/originals/41/86/33/4186337b4004ea96018a30b4749f8370.jpg',
@@ -93,14 +93,6 @@ const _category = [
 export default {
   getProducts (cb) {
     setTimeout(() => cb(_products), 100)
-  },
-  buyProducts (products, cb, errorCb) {
-    setTimeout(() => {
-      // simulate random checkout failure.
-      (Math.random() > 0.5 || navigator.userAgent.indexOf('PhantomJS') > -1)
-        ? cb()
-        : errorCb()
-    }, 100)
   },
   getCategory (cb) {
     setTimeout(() => cb(_category), 100)

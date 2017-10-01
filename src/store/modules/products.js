@@ -13,22 +13,7 @@ const state = {
 
 // getters
 const getters = {
-  allProducts: state => state.all,
-  getProductsByCategory: (state, getters) => {
-    if (state.currentCategorie !== 0) {
-      const product = state.all.find(p => p.categoryId === parseInt(state.currentCategorie))
-      let result = {
-        id: product.id,
-        title: product.title,
-        price: product.price
-      }
-      console.log(state.all)
-      console.log(result)
-      return result
-    } else {
-      return state.all
-    }
-  }
+  allProducts: state => state.all
 }
 
 // actions
@@ -37,6 +22,10 @@ const actions = {
     shop.getProducts(products => {
       commit(types.RECEIVE_PRODUCTS, { products })
     })
+  },
+  filterByCategory ({ commit }, payload) {
+    console.log(payload)
+    shop.getProductsByCategory()
   }
 }
 

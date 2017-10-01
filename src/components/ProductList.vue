@@ -2,7 +2,8 @@
     <div class="products">
         <div class="filters">
             Category
-            <select @change="filterByCategory" v-model="model.categories">
+            <select v-model="model.categories">
+                <option value="">Все категории</option>
                 <option
                         v-for="category in categories"
                         :value="category.id"
@@ -11,31 +12,31 @@
                 </option>
             </select>
             Size
-            <select @change="filterBySize" v-model="model.sizes">
-                <option
-                        v-for="size in sizes"
-                        :value="size.id"
-                >
-                    {{ size.name }}
-                </option>
+            <select  v-model="model.sizes">
+                <!--<option-->
+                        <!--v-for="size in sizes"-->
+                        <!--:value="size.id"-->
+                <!--&gt;-->
+                    <!--{{ size.name }}-->
+                <!--</option>-->
             </select>
             Color
-            <select @change="filterByColor" v-model="model.colors">
-                <option
-                        v-for="color in colors"
-                        :value="color.id"
-                >
-                    {{ color.name }}
-                </option>
+            <select  v-model="model.colors">
+                <!--<option-->
+                        <!--v-for="color in colors"-->
+                        <!--:value="color.id"-->
+                <!--&gt;-->
+                    <!--{{ color.name }}-->
+                <!--</option>-->
             </select>
             Sort
-            <select @change="filterBySort" v-model="model.sorts">
-                <option
-                        v-for="sort in sorts"
-                        :value="sort.id"
-                >
-                    {{ sort.name }}
-                </option>
+            <select  v-model="model.sorts">
+                <!--<option-->
+                        <!--v-for="sort in sorts"-->
+                        <!--:value="sort.id"-->
+                <!--&gt;-->
+                    <!--{{ sort.name }}-->
+                <!--</option>-->
             </select>
             <div id="example">
                 <button
@@ -45,11 +46,13 @@
             </div>
         </div>
         <ul>
-            <li v-for="p in products">
+            <li v-for="p in products" v-if="categoryFilter(p)">
                 <h2>{{ p.title }}</h2>
                 <img :src="p.image" alt="">
                 <p>Price: {{ p.price | currency }}</p>
                 <p>Inventory: {{ p.inventory }}</p>
+                <p>Category: {{ p.category }}</p>
+                <p>Filtered: {{ model.categories }}</p>
                 <br>
                 <button
                         :disabled="!p.inventory"
@@ -67,29 +70,34 @@
     data () {
       return {
         model: {
-          'categories': 1,
+          'categories': '',
           'sizes': 's',
-          'color': 'blac',
-          'sors': ''
+          'colors': 'black',
+          'sorts': '',
+          'search': ''
         }
       }
     },
     computed: {
       ...mapGetters({
-        products: 'getProductsByCategory',
+        products: 'allProducts',
         categories: 'allCategories'
       })
     },
     methods: {
-      filterByCategory () {
-        this.$store.commit('UPDATE_CURRENT_CATEGORIE', {category: this.model.categories})
-      },
-      filterBySize () {
-        this.$store.commit('UPDATE_CURRENT_CATEGORIE', {size: this.model.sizes})
-      },
       ...mapActions([
         'addToCart'
-      ])
+      ]),
+      categoryFilter (p) {
+        if (this.model.categories === '') {
+          return true
+        }
+        if (p.category === this.model.categories) {
+          return true
+        } else {
+          return false
+        }
+      }
     },
     created () {
       this.$store.dispatch('getAllProducts')
