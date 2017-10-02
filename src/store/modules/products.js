@@ -8,7 +8,8 @@ import * as types from '../mutation-types'
 // initial state
 const state = {
   all: [],
-  currentCategorie: 0
+  currentCategorie: 0,
+  currentSize: 0
 }
 
 // getters
@@ -40,6 +41,9 @@ const mutations = {
   },
   [types.UPDATE_CURRENT_CATEGORIE] (state, { category }) {
     state.currentCategorie = category
+  },
+  [types.UPDATE_CURRENT_SIZE] (state, { size }) {
+    state.currentSize = size
   }
 }
 

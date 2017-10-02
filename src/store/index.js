@@ -8,6 +8,7 @@ import * as getters from './getters'
 import cart from './modules/cart'
 import products from './modules/products'
 import categories from './modules/productCategories'
+import sizes from './modules/productSizes'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default new Vuex.Store({
   modules: {
     cart,
     products,
-    categories
+    categories,
+    sizes
   },
   strict: debug
 })

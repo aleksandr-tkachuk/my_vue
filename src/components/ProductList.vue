@@ -11,14 +11,14 @@
                     {{ category.name }}
                 </option>
             </select>
-            Size
+            Sizes
             <select  v-model="model.sizes">
-                <!--<option-->
-                        <!--v-for="size in sizes"-->
-                        <!--:value="size.id"-->
-                <!--&gt;-->
-                    <!--{{ size.name }}-->
-                <!--</option>-->
+                <option
+                        v-for="size in sizes"
+                        :value="size.id"
+                >
+                    {{ size.name }}
+                </option>
             </select>
             Color
             <select  v-model="model.colors">
@@ -50,6 +50,7 @@
                 <h2>{{ p.title }}</h2>
                 <img :src="p.image" alt="">
                 <p>Price: {{ p.price | currency }}</p>
+                <p>Size: {{ p.size }}</p>
                 <p>Inventory: {{ p.inventory }}</p>
                 <p>Category: {{ p.category }}</p>
                 <p>Filtered: {{ model.categories }}</p>
@@ -71,7 +72,7 @@
       return {
         model: {
           'categories': '',
-          'sizes': 's',
+          'sizes': '',
           'colors': 'black',
           'sorts': '',
           'search': ''
@@ -81,7 +82,8 @@
     computed: {
       ...mapGetters({
         products: 'allProducts',
-        categories: 'allCategories'
+        categories: 'allCategories',
+        sizes: 'allSizes'
       })
     },
     methods: {
@@ -102,6 +104,7 @@
     created () {
       this.$store.dispatch('getAllProducts')
       this.$store.dispatch('getAllCategories')
+      this.$store.dispatch('getAllSizes')
     }
   }
 </script>
