@@ -79,15 +79,15 @@ const _products = [
 const _category = [
   {
     'id': 1,
-    'name': 'category x'
+    'name': 'T-shirt'
   },
   {
     'id': 2,
-    'name': 'category y'
+    'name': 'cap'
   },
   {
     'id': 3,
-    'name': 'category z'
+    'name': 'jacket'
   }
 ]
 const _sizes = [
